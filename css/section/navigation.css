@@ -1,0 +1,39 @@
+nav {
+  background-color: #fff;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 25%);
+}
+
+.navbar {
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler {
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav {
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-collapse {
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar .nav-link .fa {
+  margin-right: 5px;
+}

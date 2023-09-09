@@ -7,8 +7,21 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
-    <title>RegiSim</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <title>RegiSIM Form</title>
   </head>
 
   <body>
@@ -43,12 +56,14 @@
 
           <label for="imei">IMEI:</label><br />
           <input type="number" id="imei" name="imei" required />
-          <span style="font-size: 12px">(Dial *#06# to check IMEI code)</span
+          <span class="text-warning" style="font-size: 12px"
+            >(Dial *#06# to check IMEI code)</span
           ><br /><br />
 
           <label for="email">Email Address:</label><br />
           <input type="email" id="email" name="email" required /><br /><br />
-          <span style="font-size: 12px">(Image should be clear enough)</span
+          <span class="text-warning" style="font-size: 12px"
+            >(Image should be clear enough)</span
           ><br />
           <label for="idcardfront">Upload ID Card Front:</label><br />
           <input
@@ -59,7 +74,8 @@
             required
           />
           <br /><br />
-          <span style="font-size: 12px">(Image should be clear enough)</span
+          <span class="text-warning" style="font-size: 12px"
+            >(Image should be clear enough)</span
           ><br />
 
           <label for="idcardback">Upload ID Card Back:</label><br />
@@ -70,11 +86,14 @@
             accept="image/*"
             required
           /><br /><br />
-          <span style="font-size: 12px">(Image should be clear enough)</span
+          <span class="text-warning" style="font-size: 12px"
+            >(Image should be clear enough)</span
           ><br />
 
           <label for="selfie">Upload Your Picture:</label><br />
-          <span style="font-size: 12px">(Half image of yourself)</span><br />
+          <span class="text-warning" style="font-size: 12px"
+            >(Half image of yourself)</span
+          ><br />
           <input
             type="file"
             id="selfie"
@@ -257,5 +276,13 @@
         form.reset();
       }
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

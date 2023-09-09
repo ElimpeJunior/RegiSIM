@@ -3,36 +3,356 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RegiSIM</title>
+
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+
+    <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <title>RegiSIM</title>
   </head>
   <body>
-    <div id="container">
-      <img src="./images/Logo.png" alt="RegiSIM Logo" />
-      <h1>
-        RegiSIM <br />
-        <br />Get Your Camtel SIM Registered under 7minutes and receive a call
-        once it's ready.
-      </h1>
-      <br />
-      <p>
-        RegiSIM is a free-to-use app that enables users to purchase a Blue SIM
-        (CAMTEL) online. If you don't know where to get one or are unable to
-        visit their office, we've got you covered. A SIM card costs 1000 FCFA
-        and comes with 2GB of data for two days, along with calls and SMS. We
-        also offer delivery services. This convenient service is currently
-        available in Buea. Click the button below to buy a SIM card.
-        <span style="font-weight: bold"
-          >Click the button below to buy a SIM card.</span
-        >
-      </p>
-      <a href="form.html"
-        ><button class="btn btn-primary">BUY A SIM CARD</button></a
+    <!-- navigation menu -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <a class="navbar-brand" href="./index.html">
+        <img src="../assets/Logo.png" alt="Logo" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
       >
-    </div>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.html">
+              <i class="fas fa-home"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#sim">
+              <i class="fas fa-sim-card"></i> Available Sim Cards
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">
+              <i class="fas fa-briefcase"></i> Contact
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#questions">
+              <i class="fas fa-question"></i> FAQ
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./privacy-policy.html">
+              <i class="fas fa-info"></i> Privacy policy
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- showcase section -->
+    <section class="bg-dark text-light py-5 px-2 my-5">
+      <div class="container">
+        <div class="d-sm-flex">
+          <div>
+            <h2>
+              Register SIM in under 7 minutes,
+              <span class="text-warning">get a call when ready.</span>
+            </h2>
+            <br />
+            <p>
+              Introducing RegiSIM, the ultimate hassle-free app for sim card
+              purchases. Get MTN, ORANGE, NEXTTLE, CAMTEl (BLUE), and YOOMEE sim
+              cards online, without the need to visit physical stores. We've got
+              you covered, making sim card acquisition effortless. Plus, enjoy
+              our convenient delivery service.
+              <strong style="text-transform: uppercase"
+                >Click below to buy a sim card now..</strong
+              >
+            </p>
+            <a href="#sim"
+              ><button class="btn btn-primary">BUY A SIM CARD</button></a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- boxes -->
+    <section class="p-4" id="sim">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md my-3">
+            <div class="card" style="width: 18rem">
+              <img
+                src="../assets/Blue.png"
+                class="card-img-top"
+                alt="blueimage"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  <span style="color: blue">Blue</span> by camtel
+                </h5>
+                <p class="card-text">
+                  Get connected with Camtel! For just 1000 FCFA, which comes
+                  with 2GB of data, calls, and SMS for two days. <br />
+                  New client? Click 'New Client'.Existing client? Click 'Old
+                  Client' for an additional SIM. Stay connected with Camtel!
+                </p>
+                <div class="d-flex justify-content-between p-2">
+                  <a href="./form.html" class="btn btn-primary">New client</a>
+                  <a href="./old-client.html" class="btn btn-info"
+                    >Old client</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- mtns-modal -->
+          <div class="col-md my-3">
+            <div class="card" style="width: 18rem">
+              <img
+                src="../assets/mtn.jpg"
+                class="card-img-top"
+                alt="mtnimage"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  <span class="text-warning">mtn</span> cameroon
+                </h5>
+                <p class="card-text">coming soon</p>
+                <div class="d-flex justify-content-between p-2">
+                  <a href="#" class="btn btn-primary">New client</a>
+                  <a href="#" class="btn btn-info">Old client</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md my-3">
+            <div class="card" style="width: 18rem">
+              <img
+                src="../assets/orange.jpg"
+                class="card-img-top"
+                alt="orangeimage"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  <span style="color: orange">Orange</span> cameroon
+                </h5>
+                <p class="card-text">coming soon</p>
+                <div class="d-flex justify-content-between p-2">
+                  <a href="#" class="btn btn-primary">New client</a>
+                  <a href="#" class="btn btn-info">Old client</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md my-3">
+            <div class="card" style="width: 18rem">
+              <img
+                src="../assets/nexttel.jpg"
+                class="card-img-top"
+                alt="nexttelimage"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  <span style="color: red">Nexttel</span> cameroon
+                </h5>
+                <p class="card-text">coming soon</p>
+                <div class="d-flex justify-content-between p-2">
+                  <a href="#" class="btn btn-primary">New client</a>
+                  <a href="#" class="btn btn-info">Old client</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md my-3">
+            <div class="card" style="width: 18rem">
+              <img
+                src="../assets/yoomee.jpg"
+                class="card-img-top"
+                alt="yoomeeimage"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  <span style="color: purple">Yoomee</span> cameroon
+                </h5>
+                <p class="card-text">coming soon</p>
+                <div class="d-flex justify-content-between p-2">
+                  <a href="#" class="btn btn-primary">New client</a>
+                  <a href="#" class="btn btn-info">Old client</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- questions -->
+    <section id="questions" class="bg-dark text-light p-3">
+      <div class="container">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne"
+              >
+                What is IMEI
+              </button>
+            </h2>
+            <div
+              id="flush-collapseOne"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                IMEI is a unique number for mobile phones used to identify,
+                track, and secure devices on cellular networks. dial(*#06#) to
+                see your IMEI.
+              </div>
+            </div>
+          </div>
+          <!-- <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo"
+              >
+                Accordion Item #2
+              </button>
+            </h2>
+            <div
+              id="flush-collapseTwo"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                Placeholder content for this accordion, which is intended to
+                demonstrate the <code>.accordion-flush</code> class. This is the
+                second item's accordion body. Let's imagine this being filled
+                with some actual content.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseThree"
+              >
+                Accordion Item #3
+              </button>
+            </h2>
+            <div
+              id="flush-collapseThree"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div class="accordion-body">
+                Placeholder content for this accordion, which is intended to
+                demonstrate the <code>.accordion-flush</code> class. This is the
+                third item's accordion body. Nothing more exciting happening
+                here in terms of content, but just filling up the space to make
+                it look, at least at first glance, a bit more representative of
+                how this would look in a real-world application.
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact -->
+    <section class="p-4" id="contact">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md">
+            <h2 class="text-center mb-4">Contact Info</h2>
+            <ul class="list-group list-group-flush lead">
+              <li class="list-group-items">
+                <span class="sw-bold">Location:</span>Molyko Buea
+              </li>
+              <li class="list-group-items">
+                <span class="sw-bold">Contact info:</span>+237675754200
+              </li>
+              <li class="list-group-items">
+                <span class="sw-bold">Email:</span>elimpejuniorekuh@gmail.com
+              </li>
+              <li class="list-group-items">
+                <span class="sw-bold">Whatsapp:</span>
+                <a href="https://wa.me/+237675754200" target="_blank"
+                  >click here</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md">
+            <img src="" alt="My location on the map" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+      <div class="container">
+        <p class="lead">Copyright &copy; 2023 Regisim</p>
+        <a href="./index.html" class="position-absolute bottom-0 end-0 p-5">
+          <i class="fas fa-arrow-up"></i>
+        </a>
+      </div>
+    </footer>
+    <!-- end -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var navLinks = document.querySelectorAll('.navbar-nav > li > a');
+        var navbarCollapse = document.querySelector('.navbar-collapse');
+    
+        navLinks.forEach(function(link) {
+          link.addEventListener('click', function() {
+            if (navbarCollapse.classList.contains('show')) {
+              navbarCollapse.classList.remove('show');
+            }
+          });
+        });
+      });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

